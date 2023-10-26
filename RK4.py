@@ -1,17 +1,22 @@
+def f(x,y):
+    return x+1/y
 
-def RK4(t0,y0,h,T,f):
+
+def RK4(x0,y0,h,T):
+    Y=[]
     import numpy as np
-    import sympy
-    x=np.linspace(t0,t0+T,100)
-    t=t0
+    import matplotlib.pyplot as plt
+    X=np.linspace(x0,x0+T,51)
+    x=x0
     y=y0
-    while t<T:  
-        k1 = f(t,y)
-        k2 = f(t+h/2,y+h*k1/2)
-        k3 = f(t+h/2,y+h*k2/2)
-        k4 = f(t+h  ,y+h*k3)
+    while x<T:  
+        k1 = f(x,y)
+        k2 = f(x+h/2,y+h*k1/2)
+        k3 = f(x+h/2,y+h*k2/2)
+        k4 = f(x+h  ,y+h*k3)
         y = y+h/6*(k1+2*k2+2*k3+k4)    
-        t = t+h
-        
-        
-RK4(t0=0,y0=1,h=0.1,T=5,f=1/(t+y))
+        x = x+h
+        Y.append(y)
+    plt.plot(X,Y)
+    plt.show()
+RK4(x0=0,y0=1,h=0.1,T=5)
